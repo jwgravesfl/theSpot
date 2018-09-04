@@ -2,8 +2,20 @@ import React, { Component } from 'react'
 
 import { Container } from 'reactstrap'
 
+import styled from 'styled-components'
 
 import firebase from '../firebase/firebase'
+
+const ListSpotsDiv = styled.div `
+    .listSpots {
+
+    }
+
+    .wrapper {
+
+    }
+`
+
 
 export default class AddSpot1 extends Component {
     constructor() {
@@ -33,19 +45,20 @@ export default class AddSpot1 extends Component {
 
   render() {
     return (
+    <ListSpotsDiv>
       <Container>
         <section className='display-item'>
           <div className="wrapper">
-            <ul>
               {this.state.spots.map((spot) => {
                 return (
                     <h3>{spot.companyName}</h3>
                 )
               })}
-            </ul>
+            
           </div>
         </section>
       </Container>
+    </ListSpotsDiv>
     )
   }
 }
