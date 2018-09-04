@@ -33,7 +33,15 @@ export default class AddSpot1 extends Component {
               for (let spot in spots) {
                 newState.push({
                   id: spot,
-                  companyName: spots[spot].CompanyName,
+                  CompanyName: spots[spot].CompanyName,
+                  Address: spots[spot].Address,
+                  City: spots[spot].City,
+                  ZIPCode: spots[spot].ZIPCode,
+                  Neighborhood: spots[spot].Neighborhood,
+                  PhoneNumberCombined: spots[spot].PhoneNumberCombined,
+                  FaxNumberCombined: spots[spot].FaxNumberCombined,
+                  Website: spots[spot].Website,
+                  email: spots[spot].email,                
                 });
               }
               this.setState({
@@ -42,6 +50,10 @@ export default class AddSpot1 extends Component {
             });
           }
 
+          removeSpot(spotID) {
+            const spotRef = firebase.database().ref(`/spots/${spotID}`);
+            spotRef.remove();
+          }
 
   render() {
     return (
@@ -51,7 +63,10 @@ export default class AddSpot1 extends Component {
           <div className="wrapper">
               {this.state.spots.map((spot) => {
                 return (
-                    <h3>{spot.companyName}</h3>
+                    <div key={spot.id}>
+                        {spot.id} {spot.CompanyName} {spot.Address}
+                        <button onClick={() => this.removeSpot(spot.id)}>Remove Spot</button>
+                    </div>
                 )
               })}
             
