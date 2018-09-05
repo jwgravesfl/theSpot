@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Container, Card, Button, CardTitle, CardSubtitle, CardText } from 'reactstrap'
+import { Form, Container, Card, Button, CardTitle, CardSubtitle, CardText, Label, Input } from 'reactstrap'
 
 import styled from 'styled-components'
 
@@ -20,13 +20,15 @@ const ListSpotsDiv = styled.div `
     }
 `
 
-
-export default class ListSpots extends Component {
+export default class FilteredSpots extends Component {
     constructor() {
         super();
             this.state = {
-              spots: []
+              spots: [],
+              zipSearch: ''
                 }
+                
+            this.handleChange = this.handleChange.bind(this)
             }
 
           componentDidMount() {
@@ -59,15 +61,42 @@ export default class ListSpots extends Component {
             spotRef.remove();
           }
 
+          handleChange(e) {
+            this.setState({
+              [e.target.name]: e.target.value
+            });
+          }
+
+          
   render() {
+      const zipSearch = this.state.zipSearch
+    
     return (
     <ListSpotsDiv>
       <Container>
+        <section>
+          <Form>
+            <Label 
+                for="zipSearch"
+                className="asLabel"
+              >Zip Code</Label>
+              <Input
+                type="number" 
+                name="zipSearch" 
+                placeholder="Zip Code Search"
+                id="zipSearch" 
+                onChange={this.handleChange} 
+                value={this.state.zipSearch}
+                className="asInput"
+              />
+          </Form>  
+        </section>
         <section className='display-item'>
           <div className="row">
-              {this.state.spots.map((spot) => {
-                return (
-                    <div className="col-4 lsDiv" key={spot.id}>
+              {this.state.spots.map((spot, i) => {
+                 return zipSearch == spot.ZIPCode || !zipSearch
+                      ? (
+                    <div className="col-4 lsDiv" key={i}>
                         <Card body>
                             <CardTitle>{spot.CompanyName}</CardTitle>
                             <CardSubtitle>{spot.Address} {spot.City} {spot.ZIPCode} </CardSubtitle>
@@ -76,7 +105,8 @@ export default class ListSpots extends Component {
                             <Button onClick={() => this.removeSpot(spot.id)}>Remove Spot</Button>
                         </Card>    
                     </div>
-                )
+                ) : null
+              
               })}
             
           </div>

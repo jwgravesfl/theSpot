@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Container, Button, Form, Label, Input } from 'reactstrap'
+import { Container, Button, Form, Label, Input, FormText } from 'reactstrap'
 
 import styled from 'styled-components'
 
@@ -340,40 +340,7 @@ export default class AddSpot extends Component {
                 </div>
               </div>
 
-            <div className="row">
-              <div className="col">
-                <Label 
-                    for="category"
-                    className="asLabel"
-                  >Category</Label>
-                  <Input
-                    type="url" 
-                    name="category" 
-                    placeholder="category"
-                    id="category" 
-                    onChange={this.handleChange} 
-                    value={this.state.category}
-                    className="asInput"
-                  />
-              </div>
-              <div className="col">
-                <Label 
-                    for="subCategory"
-                    className="asLabel"
-                  >SubCategory</Label>
-                  <Input
-                    type="url" 
-                    name="subCategory" 
-                    placeholder="subCategory"
-                    id="subCategory" 
-                    onChange={this.handleChange} 
-                    value={this.state.subCategory}
-                    className="asInput"
-                  />
-              </div>
-            </div>
-
-            <div className="row">
+              <div className="row">
               <div className="col">
                 <Label 
                     for="eventCoordinatorName"
@@ -405,6 +372,64 @@ export default class AddSpot extends Component {
                   />
               </div>
             </div>
+
+            <div className="row">
+              <div className="col">
+              <Label 
+                    for="category"
+                    className="asLabel"
+                  >Category</Label>
+                  <Input
+                    type="select" 
+                    name="category" 
+                    placeholder="Category"
+                    id="category" 
+                    onChange={this.handleChange} 
+                    value={this.state.category}
+                    className="asSelect"
+                  >
+                    <option>Category</option>
+                    <option>Live Music</option>
+                    <option>Clubs</option>
+                    <option>Neighborhood</option>
+                    <option>Fancy</option>
+                    <option>European</option>
+                    <option>421</option>
+                  </Input>
+                </div>
+              <div className="col">
+              <Label>
+                Sub Categories
+              </Label>
+              <FormText >
+              Country	College	Dive Piano Comedy	Irish
+              Tejano	NightClub	Lounge	Cigar Food	English
+              HipHop	Motorcycle Sportsbar	Wine	Sottish
+              RocknRoll	Chain German				
+              </FormText>
+                
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+
+              <Label 
+                    for="subCategory"
+                    className="asLabel"
+                  >SubCategories</Label>
+                  <Input
+                    type="textarea" 
+                    name="subCategory" 
+                    placeholder="Add all Sub Categories that apply"
+                    id="subCategory" 
+                    onChange={this.handleChange} 
+                    value={this.state.subCategory}
+                    className="asInput"
+                  />
+              </div>
+              </div>
+
+            
               
 
             <Button

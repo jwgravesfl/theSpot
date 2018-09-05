@@ -1,0 +1,32 @@
+[
+    {
+      "spot.id": "1",
+      "note": "called LM",
+      "date": "8/10/2018"
+    },
+    {
+      "spot.id": "1",
+      "note": "called LM",
+      "date": "8/15/2018"
+    },
+    {
+      "spot.id": "1",
+      "note": "called LM",
+      "date": "8/19/2018"
+    },
+    {
+      "spot.id": "3",
+      "note": "called LM",
+      "date": "8/15/2018"
+    },
+    {
+      "spot.id": "3",
+      "note": "called LM",
+      "date": "8/17/2018"
+    },
+    {
+      "spot.id": "2",
+      "note": "called LM",
+      "date": "8/02/2018"
+    }
+]
