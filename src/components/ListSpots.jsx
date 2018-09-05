@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Container } from 'reactstrap'
+import { Container, Card, Button, CardTitle, CardSubtitle, CardText } from 'reactstrap'
 
 import styled from 'styled-components'
 
@@ -9,6 +9,10 @@ import firebase from '../firebase/firebase'
 const ListSpotsDiv = styled.div `
     .listSpots {
 
+    }
+
+    .lsDiv {
+        padding-top: 3vh;
     }
 
     .wrapper {
@@ -60,12 +64,17 @@ export default class AddSpot1 extends Component {
     <ListSpotsDiv>
       <Container>
         <section className='display-item'>
-          <div className="wrapper">
+          <div className="row">
               {this.state.spots.map((spot) => {
                 return (
-                    <div key={spot.id}>
-                        {spot.id} {spot.CompanyName} {spot.Address}
-                        <button onClick={() => this.removeSpot(spot.id)}>Remove Spot</button>
+                    <div className="col-4 lsDiv" key={spot.id}>
+                        <Card body>
+                            <CardTitle>{spot.CompanyName}</CardTitle>
+                            <CardSubtitle>{spot.Address} {spot.City} {spot.ZIPCode} </CardSubtitle>
+                            <CardText>{spot.PhoneNumberCombined}</CardText>
+                            <CardText>{spot.Website} {spot.Facebook}</CardText>
+                            <Button onClick={() => this.removeSpot(spot.id)}>Remove Spot</Button>
+                        </Card>    
                     </div>
                 )
               })}
