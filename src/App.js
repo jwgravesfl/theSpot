@@ -23,8 +23,9 @@ class App extends Component {
           <header className="">
             theSpot
           </header>
-          <AddSpot />
           <FilteredSpots />
+          <AddSpot />
+          
         </AppWrapper>
     );
   }

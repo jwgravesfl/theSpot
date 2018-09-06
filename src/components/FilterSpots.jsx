@@ -1,17 +1,61 @@
 import React, { Component } from 'react'
 
-import { Form, Container, Card, Button, CardText, Label, Input } from 'reactstrap'
+import { Form, Card, Button, Label, Input, Row, Col, Badge } from 'reactstrap'
 
 import styled from 'styled-components'
 
 import BarNotesPopover from './BarNotesPopover'
+import SpotScore from './SpotScore'
 
 import firebase from '../firebase/firebase'
 
 const FilteredSpotsDiv = styled.div `
-    .notesButton {
+
+    ol, ul {
+      list-style: none;
+    }
+
+
+    .fsCompanyName {
+      color: black;
+      font-size: 1.5vw;
+      font-variant: small-caps;
+      font-family: 'Anton', sans-serif;
+    }
+
+    .fsCategory {
+      color: red;
+      font-size: .9vw;
+      font-variant: small-caps;
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    .fsAddressCityZip {
+      font-family: 'Lora', serif;
+    }
+
+    .lsPhoneNumber {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    .webSocialMediaList {
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+    }
+
+    .spotScoreDisplay {
       position: absolute;
       top: 10px;
+      right: 10px;
+    }
+
+    .notesButton {
+      position: absolute;
+      bottom: 50px;
       right: 10px;
     }
 
@@ -19,8 +63,17 @@ const FilteredSpotsDiv = styled.div `
         padding-top: 3vh;
     }
 
-    .wrapper {
+    .fsCard {
+      height: 25vh;
+      padding: 0;
+      padding-left: 1em;
+    }
 
+    .removeSpotButton {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      padding: .1em;
     }
 `
 
@@ -51,7 +104,11 @@ export default class FilteredSpots extends Component {
                   PhoneNumberCombined: spots[spot].PhoneNumberCombined,
                   FaxNumberCombined: spots[spot].FaxNumberCombined,
                   Website: spots[spot].Website,
-                  email: spots[spot].email,                
+                  email: spots[spot].email,
+                  category: spots[spot].category,
+                  Facebook: spots[spot].Facebook,
+                  GooglePlus: spots[spot].GooglePlus,
+                  Twitter: spots[spot].Twitter                
                 });
               }
               this.setState({
@@ -77,7 +134,7 @@ export default class FilteredSpots extends Component {
     
     return (
     <FilteredSpotsDiv>
-      <Container>
+     
         <section>
           <Form>
 
@@ -145,37 +202,66 @@ export default class FilteredSpots extends Component {
           </Form>  
         </section>
         <section className='display-item'>
-          <div className="row">
+          <Row className="row">
               {this.state.spots.map((spot, i) => {
                  return zipSearch == spot.ZIPCode || !zipSearch
                       ? (
-                    <div className="col-4 lsDiv" key={i}>
-                        <Card body>
-                        <div className="row">
-                             {spot.CompanyName}
+                    <Col 
+                      xs="12" 
+                      sm="12"
+                      md="6"
+                      lg="4"
+                      xl="3"
+                      className="lsDiv"
+                      key={i}
+                    >
+                        <Card body className="fsCard">
+                        <div className="fsCategory" > {spot.category}</div>    
+                        <div className="fsCompanyName" > {spot.CompanyName}</div>
                           
                           <div className="notesButton">
                             <BarNotesPopover spotID={spot.id} />
                           </div>
-                        </div>
-                        <div className="row">{spot.Address}</div>
-                            <div className="row">
-                              <div className="col">{spot.City}</div> 
-                              <div className="col">{spot.ZIPCode }</div> 
-                              <div className="col">{spot.PhoneNumberCombined}</div>
+                        <div className="fsAddressCityZip" >{spot.Address}</div>
+                            <div>
+                              <div className="fsAddressCityZip" >{spot.City} {spot.ZIPCode}</div> 
+                              <h5 className="lsPhoneNumber" >{spot.PhoneNumberCombined}</h5>
                             </div>
                             
-                            <CardText>{spot.Website} {spot.Facebook}</CardText>
-                            <Button onClick={() => this.removeSpot(spot.id)}>Remove Spot</Button>
+                            <div className="card-link" >
+                              <ul className="webSocialMediaList" >
+                                    {spot.Website ?
+                                    <li><Badge color="light" pill href={spot.Website} >Website</Badge></li>
+                                    : null
+                                  }
+                                
+                                    {spot.Facebook ?
+                                    <li><Badge color="primary" pill href={spot.Facebook}>Facebook</Badge></li>
+                                    : null
+                                  }
+                                
+                                    {spot.GooglePlus ?
+                                    <li><Badge href={spot.GooglePlus} target="_blank" pill color="primary" >GooglePlus</Badge></li>
+                                    : null
+                                  }
+                                
+                                    {spot.Twitter ?
+                                    <li><Badge pill href={spot.Twitter} target="_blank" color="primary" >Twitter</Badge></li>
+                                    : null
+                                  }
+                                
+                              </ul>
+                            </div>
+                            <SpotScore spotID={spot.id} />
+                            <Button className="removeSpotButton" onClick={() => this.removeSpot(spot.id)}>Remove Spot</Button>
                         </Card>    
-                    </div>
+                    </Col>
                 ) : null
               
               })}
             
-          </div>
+          </Row>
         </section>
-      </Container>
     </FilteredSpotsDiv>
     )
   }

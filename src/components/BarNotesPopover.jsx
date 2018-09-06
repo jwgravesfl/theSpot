@@ -1,13 +1,30 @@
 import React, { Component } from 'react'
-import { Form, Button, Popover, PopoverHeader, Modal, ModalHeader, ModalBody, Label, Input, ModalFooter } from 'reactstrap'
+import { Form, Button, Modal, ModalHeader, ModalBody, Label, Input, ModalFooter } from 'reactstrap'
 
 import firebase from '../firebase/firebase'
+
+import styled from 'styled-components'
+
+const BarNotesDiv = styled.div `
+  .notePopUp {
+    width: 50vw;
+  }
+
+  .newNoteandNotesButton {
+    font-size: 1em;
+    padding: .1em;
+    margin-bottom: .1em;
+  }
+
+  .newNoteandNotesDiv {
+    text-align: right;
+  }
+`
 
 
 export default class BarNotesPopover extends Component {
   constructor(props) {
     super(props)
-    this.toggle = this.toggle.bind(this)
     this.state = {
       spotID: '',
       note: '',
@@ -75,17 +92,23 @@ export default class BarNotesPopover extends Component {
     })
   }
 
-  removeNote(spotID) {
-    const barNoteRef = firebase.database().ref(`/notes/${spotID}`)
+  removeNote(noteID) {
+    const barNoteRef = firebase.database().ref(`/barNotes/${noteID}`)
     barNoteRef.remove()
   }
   
   render() {
     const spotID = this.props.spotID
     return (
-      <div>
-      <Button color="danger" onClick={this.toggleModal}>New Note</Button>
-        <Modal isOpen={this.state.modal} toggle={this.toggleModal} className="">
+      <BarNotesDiv>
+      <div className="newNoteandNotesDiv" >
+      <Button className="newNoteandNotesButton" color="danger" onClick={this.toggleModal}>New Note</Button>
+        <Modal 
+          isOpen={this.state.modal} 
+          toggle={this.toggleModal} 
+          className=""
+          size="lg"
+        >
         <Form onSubmit={this.handleSubmit}>
           <ModalHeader toggle={this.toggleModal}>Add Note</ModalHeader>
           <ModalBody>
@@ -130,11 +153,18 @@ export default class BarNotesPopover extends Component {
           </ModalFooter>
           </Form>
         </Modal>
-        <Button id={"Popover1" + spotID} onClick={this.toggle}>
+        <Button className="newNoteandNotesButton" id={"Popover1" + spotID} onClick={this.toggle}>
           Notes
         </Button>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} target={"Popover1" + spotID} toggle={this.toggle}>
-          <PopoverHeader>Notes</PopoverHeader>
+        
+        <Modal 
+          size='lg'
+          isOpen={this.state.popoverOpen} 
+          target={"Popover1" + spotID} 
+          toggle={this.toggle}
+          className="notePopUp"
+        >
+          <ModalHeader>Notes</ModalHeader>
           {this.state.notes.map((note, i) => {
             return spotID === note.spotID
             ? <div className="row" key={i}>
@@ -144,11 +174,15 @@ export default class BarNotesPopover extends Component {
             <div className="col">
               {note.note}
             </div>
+            <div className="col">
+            <Button onClick={() => this.removeNote(note.id)}>Delete Note</Button>
+            </div>
           </div> : null
           })}
           
-      </Popover>
+      </Modal>
       </div>
+      </BarNotesDiv>
     )
   }
 }
