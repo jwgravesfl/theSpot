@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import AddSpot from './components/AddSpot'
-import ListSpots from './components/ListSpots'
 import FilteredSpots from './components/FilterSpots'
 
 const AppWrapper = styled.div `
@@ -24,6 +23,7 @@ class App extends Component {
           <header className="">
             theSpot
           </header>
+          <AddSpot />
           <FilteredSpots />
         </AppWrapper>
     );
