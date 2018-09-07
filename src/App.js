@@ -3,10 +3,16 @@ import styled from 'styled-components'
 import AddSpot from './components/AddSpot'
 import FilteredSpots from './components/FilterSpots'
 
+import img from './assets/theSpotLogoPNG.png'
+
 const AppWrapper = styled.div `
     margin: 1em;
 
-    .barListRow {
+    .tSLogo {
+      img {
+        width: 3em;
+      }
+      
     }
 
     .barListColumn {
@@ -20,11 +26,12 @@ class App extends Component {
   render() {
     return (
       <AppWrapper className="">
-          <header className="">
-            theSpot
+          <header className="tSLogo">
+            <img className="" src={img} alt="theSpot Logo" />
           </header>
-          <FilteredSpots />
           <AddSpot />
+          <FilteredSpots />
+          
           
         </AppWrapper>
     );

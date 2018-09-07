@@ -63,7 +63,7 @@ export default class SpotScore extends Component {
       <SpotScoreDiv>
         {this.state.spotScores.map((spotScore, i) => {
             return spotID === spotScore.spotID
-            ? <div className="spotScoreDisplay">
+            ? <div className="spotScoreDisplay" key={i} >
                 {spotScore.cleanliness + spotScore.buildingUpkeep + spotScore.parking + spotScore.ambience + 
                     spotScore.welcoming + spotScore.realness + spotScore.priceSpecials + spotScore.drinkFoodQuality + spotScore.customerService + 
                     spotScore.communitySupport + spotScore.extraCredit }
