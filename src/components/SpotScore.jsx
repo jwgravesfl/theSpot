@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import styled from 'styled-components'
 
-import firebase from '../firebase/firebase'
+import {db} from '../firebase/firebase'
 
 const SpotScoreDiv = styled.div `
 
@@ -18,7 +18,7 @@ export default class SpotScore extends Component {
     }
     
     componentDidMount() {
-        const spotScoresRef = firebase.database().ref('spotScores')
+        const spotScoresRef = db.ref('spotScores')
         spotScoresRef.on('value', (snapshot) => {
             let spotScores = snapshot.val()
             let newState = []

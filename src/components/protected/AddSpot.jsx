@@ -4,9 +4,11 @@ import { Container, Button, Form, Label, Input, FormText } from 'reactstrap'
 
 import styled from 'styled-components'
 
-import firebase from '../firebase/firebase'
+import {db} from '../../firebase/firebase'
 
 const AddSpotDiv = styled.div `
+
+  padding-top: 7vh;
 
   .asContainer {
     max-width: 900px;
@@ -65,6 +67,10 @@ export default class AddSpot extends Component {
               eventCoordinatorName: '',
               eventCoordinatorEmail: '',
               lastUpdatedOn: '',
+              description: '',
+              mainImg: '',
+              daysClosed: '',
+              hoursOfOperation: '',
               spots: []
             }
             this.handleSubmit = this.handleSubmit.bind(this)
@@ -79,7 +85,7 @@ export default class AddSpot extends Component {
     
           handleSubmit(e) {
             e.preventDefault();
-            const spotsRef = firebase.database().ref('spots');
+            const spotsRef = db.ref('spots');
             const spot = {
               CompanyName: this.state.CompanyName,
               Address: this.state.Address,
@@ -94,6 +100,11 @@ export default class AddSpot extends Component {
               category: this.state.category,
               subCategory: this.state.subCategory,
               email: this.state.email,
+              description: this.state.description,
+              mainImg: this.state.mainImg,
+              daysClosed: this.state.daysClosed,
+              hoursOfOperation: this.state.hoursOfOperation,
+
             }
             spotsRef.push(spot);
             this.setState({
@@ -114,6 +125,10 @@ export default class AddSpot extends Component {
               email: '',
               eventCoordinatorName: '',
               eventCoordinatorEmail: '',
+              description: '',
+              mainImg: '',
+              daysClosed: '',
+              hoursOfOperation: '',
             });
           }
 
@@ -428,6 +443,40 @@ export default class AddSpot extends Component {
             </div>
 
             <div className="row">
+                <div className="col">
+                <Label 
+                    for="hoursOfOperation"
+                    className="asLabel"
+                  >Hours of Operation</Label>
+                  <Input
+                    type="url" 
+                    name="hoursOfOperation" 
+                    placeholder="Hours of Operation"
+                    id="hoursOfOperation" 
+                    onChange={this.handleChange} 
+                    value={this.state.hoursOfOperation}
+                    className="asInput"
+                  />
+              </div>
+              <div className="col">
+                <Label 
+                    for="daysClosed"
+                    className="asLabel"
+                  >Days Closed</Label>
+                  <Input
+                    type="url" 
+                    name="daysClosed" 
+                    placeholder="Days Closed"
+                    id="daysClosed" 
+                    onChange={this.handleChange} 
+                    value={this.state.daysClosed}
+                    className="asInput"
+                  />
+              </div>
+
+            </div>
+
+            <div className="row">
               <div className="col">
               <Label 
                     for="category"
@@ -481,6 +530,25 @@ export default class AddSpot extends Component {
                     className="asInput"
                   />
               </div>
+              </div>
+              <div className="row">
+              <div className="col">
+
+              <Label 
+                    for="description"
+                    className="asLabel"
+                  >Short Spot Description</Label>
+                  <Input
+                    type="textarea" 
+                    name="description" 
+                    placeholder="Description of Spot"
+                    id="description" 
+                    onChange={this.handleChange} 
+                    value={this.state.description}
+                    className="asInput"
+                  />
+              </div>
+              
               </div>
 
             

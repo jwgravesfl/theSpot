@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Modal, ModalHeader, ModalBody, Label, Input, ModalFooter } from 'reactstrap'
 
-import firebase from '../firebase/firebase'
+import {db} from '../firebase/firebase'
 
 import styled from 'styled-components'
 
@@ -59,7 +59,7 @@ export default class BarNotesPopover extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    const newBarNotesRef = firebase.database().ref('barNotes')
+    const newBarNotesRef = db.ref('barNotes')
     const barNote = {
       spotID: this.props.spotID,
       date: this.state.date,
@@ -74,7 +74,7 @@ export default class BarNotesPopover extends Component {
   }
 
   componentDidMount() {
-    const barNotesRef = firebase.database().ref('barNotes')
+    const barNotesRef = db.ref('barNotes')
     barNotesRef.on('value', (snapshot) => {
       let notes = snapshot.val()
       let newState = []
@@ -93,7 +93,7 @@ export default class BarNotesPopover extends Component {
   }
 
   removeNote(noteID) {
-    const barNoteRef = firebase.database().ref(`/barNotes/${noteID}`)
+    const barNoteRef = db.ref(`/barNotes/${noteID}`)
     barNoteRef.remove()
   }
   

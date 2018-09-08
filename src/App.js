@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
-import AddSpot from './components/AddSpot'
+import AddSpot from './components/protected/AddSpot'
 import FilteredSpots from './components/FilterSpots'
+import NavBar from './components/NavBar'
 
-import img from './assets/theSpotLogoPNG.png'
+
 
 const AppWrapper = styled.div `
     margin: 1em;
 
-    .tSLogo {
       img {
-        width: 3em;
+        width: 2em;
       }
       
     }
@@ -19,6 +19,17 @@ const AppWrapper = styled.div `
       padding: 1em;
       text-align: center;
     }
+
+  #theSpotNavBar {
+    
+    .theSpotLogo {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translate(-50%, 0);
+  }    
+  
+
 `
 
 class App extends Component {
@@ -26,8 +37,8 @@ class App extends Component {
   render() {
     return (
       <AppWrapper className="">
-          <header className="tSLogo">
-            <img className="" src={img} alt="theSpot Logo" />
+          <header className="">
+            <NavBar />
           </header>
           <AddSpot />
           <FilteredSpots />

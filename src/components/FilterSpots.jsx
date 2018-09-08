@@ -7,7 +7,7 @@ import styled from 'styled-components'
 import BarNotesPopover from './BarNotesPopover'
 import SpotScore from './SpotScore'
 
-import firebase from '../firebase/firebase'
+import {db} from '../firebase/firebase'
 
 const FilteredSpotsDiv = styled.div `
 
@@ -57,6 +57,7 @@ const FilteredSpotsDiv = styled.div `
       position: absolute;
       bottom: 50px;
       right: 10px;
+      
     }
 
     .lsDiv {
@@ -89,7 +90,7 @@ export default class FilteredSpots extends Component {
             }
 
           componentDidMount() {
-            const spotsRef = firebase.database().ref('spots');
+            const spotsRef = db.ref('spots');
             spotsRef.on('value', (snapshot) => {
               let spots = snapshot.val();
               let newState = [];
@@ -118,7 +119,7 @@ export default class FilteredSpots extends Component {
           }
 
           removeSpot(spotID) {
-            const spotRef = firebase.database().ref(`/spots/${spotID}`);
+            const spotRef = db.ref(`/spots/${spotID}`);
             spotRef.remove();
           }
 
