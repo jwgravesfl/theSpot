@@ -28,6 +28,12 @@ const AppWrapper = styled.div `
       left: 50%;
       transform: translate(-50%, 0);
   }    
+
+  .loginRegisterLogoutNavItem {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+  }
   
 
 `
