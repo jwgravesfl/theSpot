@@ -198,32 +198,14 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >City</Label>
                   <Input
-                    type="select" 
+                    type="text" 
                     name="City" 
                     placeholder="City"
                     id="City" 
                     onChange={this.handleChange} 
                     value={this.state.City}
                     className="asSelect"
-                  >
-                  <option>	Colorado Springs	</option>
-                  <option>	Air Force Academy	</option>
-                  <option>	Calhan	</option>
-                  <option>	Cascade-Chipita Park	</option>
-                  <option>	Cimarron Hills	</option>
-                  <option>	Elbert	</option>
-                  <option>	Fort Carson	</option>
-                  <option>	Fountain	</option>
-                  <option>	Green Mountain Falls	</option>
-                  <option>	Manitou Springs	</option>
-                  <option>	Palmer Lake	</option>
-                  <option>	Peyton	</option>
-                  <option>	Ramah	</option>
-                  <option>	Rush	</option>
-                  <option>	Woodmoor	</option>
-                  <option>	Yoder	</option>
-                  
-                  </Input>
+                  />
                 </div>
                 <div className="col">
                 <Label 
@@ -231,62 +213,14 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >Zip Code</Label>
                   <Input
-                    type="select" 
+                    type="text" 
                     name="ZIPCode" 
                     placeholder="ZIPCode"
                     id="ZIPCode" 
                     onChange={this.handleChange} 
                     value={this.state.ZIPCode}
                     className="asSelect"
-                  >
-                    <option>Zip Code</option>
-                    <option>	80106	</option>
-                    <option>	80132	</option>
-                    <option>	80133	</option>
-                    <option>	80808	</option>
-                    <option>	80809	</option>
-                    <option>	80817	</option>
-                    <option>	80819	</option>
-                    <option>	80829	</option>
-                    <option>	80831	</option>
-                    <option>	80832	</option>
-                    <option>	80833	</option>
-                    <option>	80840	</option>
-                    <option>	80864	</option>
-                    <option>	80902	</option>
-                    <option>	80903	</option>
-                    <option>	80904	</option>
-                    <option>	80905	</option>
-                    <option>	80906	</option>
-                    <option>	80907	</option>
-                    <option>	80908	</option>
-                    <option>	80909	</option>
-                    <option>	80910	</option>
-                    <option>	80911	</option>
-                    <option>	80913	</option>
-                    <option>	80914	</option>
-                    <option>	80915	</option>
-                    <option>	80916	</option>
-                    <option>	80917	</option>
-                    <option>	80918	</option>
-                    <option>	80919	</option>
-                    <option>	80920	</option>
-                    <option>	80921	</option>
-                    <option>	80922	</option>
-                    <option>	80923	</option>
-                    <option>	80924	</option>
-                    <option>	80925	</option>
-                    <option>	80926	</option>
-                    <option>	80927	</option>
-                    <option>	80928	</option>
-                    <option>	80929	</option>
-                    <option>	80930	</option>
-                    <option>	80931	</option>
-                    <option>	80938	</option>
-                    <option>	80951	</option>
-                    
-                    
-                  </Input>
+                  />
                 </div>
                 <div className="col">
                 <Label 
@@ -294,20 +228,14 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >Neighborhood</Label>
                   <Input
-                    type="select" 
+                    type="text" 
                     name="Neighborhood" 
                     placeholder="Neighborhood"
                     id="Neighborhood" 
                     onChange={this.handleChange} 
                     value={this.state.Neighborhood}
                     className="asSelect"
-                  >
-                    <option>Neighborhood</option>
-                    <option>Downtown Colorado Springs</option>
-                    <option>Manitou Springs</option>
-                    <option>Old Colorado City</option>
-                    <option>Westside</option>
-                  </Input>
+                  />
                 </div>
               </div>
               <div className="row">
@@ -416,7 +344,7 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >Event Coordinator Name</Label>
                   <Input
-                    type="url" 
+                    type="text" 
                     name="eventCoordinatorName" 
                     placeholder="Event Coordinator Name"
                     id="eventCoordinatorName" 
@@ -431,7 +359,7 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >Event Coordinator Email</Label>
                   <Input
-                    type="url" 
+                    type="text" 
                     name="eventCoordinatorEmail" 
                     placeholder="Event Coordinator Email"
                     id="eventCoordinatorEmail" 
@@ -449,7 +377,7 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >Hours of Operation</Label>
                   <Input
-                    type="url" 
+                    type="text" 
                     name="hoursOfOperation" 
                     placeholder="Hours of Operation"
                     id="hoursOfOperation" 
@@ -464,7 +392,7 @@ export default class AddSpot extends Component {
                     className="asLabel"
                   >Days Closed</Label>
                   <Input
-                    type="url" 
+                    type="text" 
                     name="daysClosed" 
                     placeholder="Days Closed"
                     id="daysClosed" 
@@ -550,10 +478,6 @@ export default class AddSpot extends Component {
               </div>
               
               </div>
-
-            
-              
-
             <Button
               className="asButton"  
               >

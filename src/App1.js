@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
-import { Route, BrowserRouter, Redirect, Switch } from 'react-router-dom'
+import { Route, HashRouter, Redirect, Switch } from 'react-router-dom'
 import Login from './components/login/Login'
 import Register from './components/login/Register'
 
@@ -104,7 +104,7 @@ class App extends Component {
   render() {
 
     return this.state.loading === true ? <h1>Loading</h1> : (
-      <BrowserRouter>
+      <HashRouter>
         <AppWrapper>
         <NavBar authed={this.state.authed} />
             <div id="mainViewer" className="row">
@@ -119,7 +119,7 @@ class App extends Component {
             </div>
             
         </AppWrapper>
-      </BrowserRouter>
+      </HashRouter>
 
     );
   }
